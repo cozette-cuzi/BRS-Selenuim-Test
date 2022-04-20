@@ -10,8 +10,7 @@ public class LoginService extends BaseService {
 
     public void visitLgoinPage() {
         By loginLinkLocator = By.linkText("Login");
-        WebElement loginLink = this.waitVisibilityAndReturnElement(loginLinkLocator);
-        loginLink.click();
+        this.click(loginLinkLocator);
     }
 
     public String loginWithCredetials(String email, String password) {

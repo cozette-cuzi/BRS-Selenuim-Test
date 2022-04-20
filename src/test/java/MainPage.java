@@ -26,8 +26,5 @@ public class MainPage extends BaseService{
         return this.bodyText().contains(book);
     }
 
-    // public boolean logout() {
-    //     this.click(navbarDropdownLocator);
-    //     By logoutLocator = By.xpath("//div//a[@href='https://book-rentals-system.herokuapp.com/logout'");
-    // }
+    
 }

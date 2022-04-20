@@ -1,10 +1,6 @@
-import static org.junit.Assert.assertEquals;
-
 import org.junit.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -23,6 +19,7 @@ public class BRSTest {
     public void testBookRentalsSystem() {
         MainPage mainPage = new MainPage(this.driver);
         LoginService loginService = new LoginService(this.driver);
+        LogoutService logoutService = new LogoutService(this.driver);
 
         if (mainPage.searchForBook("Aperiam iusto")) {
             System.out.println("Book Found");
@@ -33,6 +30,9 @@ public class BRSTest {
         mainPage.visitLgoinPage();
         String username = loginService.loginWithCredetials("cozette@gmail.com", "password");
         System.out.println(username);
+
+        boolean loggedOut = logoutService.logout();
+        System.out.println(loggedOut? "Logout Successful" : "Logout Failed!");
     }
 
     @After
