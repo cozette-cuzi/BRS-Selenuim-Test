@@ -1,4 +1,4 @@
-# 2022 Wednesday Late
+# BRS Selenuim Test
 
-Hello world
-
+Software Quality and testing Selenuim assignment.
+Testing the website https://book-rentals-system.herokuapp.com/.
