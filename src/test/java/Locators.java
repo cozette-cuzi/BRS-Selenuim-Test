@@ -1,6 +1,7 @@
 import org.openqa.selenium.By;
 
 public class Locators {
+    public final String URL = "https://book-rentals-system.herokuapp.com/";
     public By loginLinkLocator = By.linkText("Login");
     public By searchFieldLocator = By.name("search");
     public By searchButtonLocator = By
@@ -12,4 +13,6 @@ public class Locators {
     public By passwordInputLocator = By.id("password");
     public By loginButtonLocator = By.xpath("//button[normalize-space()=\"Login\"]");
     public By bodyLocator = By.tagName("body");
+    public By librarianActionsLocator = By.linkText("Librarian Actions");
+    public By addBookLocator = By.xpath("//a[@href='https://book-rentals-system.herokuapp.com/books/create']");
 }

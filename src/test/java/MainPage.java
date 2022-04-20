@@ -3,11 +3,9 @@ import org.openqa.selenium.*;
 
 public class MainPage extends BaseService {
 
-    private final String URL = "https://book-rentals-system.herokuapp.com/";
-
     public MainPage(WebDriver driver) {
         super(driver);
-        this.driver.get(URL);
+        this.driver.get(this.locators.URL);
     }
 
     public void visitLgoinPage() {

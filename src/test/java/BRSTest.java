@@ -20,6 +20,11 @@ public class BRSTest {
         MainPage mainPage = new MainPage(this.driver);
         LoginService loginService = new LoginService(this.driver);
         LogoutService logoutService = new LogoutService(this.driver);
+        BookService bookService = new BookService(this.driver);
+
+        mainPage.visitLgoinPage();
+        String username = loginService.loginWithCredetials("cozette@gmail.com", "password");
+        System.out.println(username);
 
         if (mainPage.searchForBook("Aperiam iusto")) {
             System.out.println("Book Found");
@@ -27,12 +32,10 @@ public class BRSTest {
             System.out.println("Book Not Found!");
         }
 
-        mainPage.visitLgoinPage();
-        String username = loginService.loginWithCredetials("cozette@gmail.com", "password");
-        System.out.println(username);
+        System.out.println("Add new Book Opened is " + bookService.visitAddBookPage());
 
         boolean loggedOut = logoutService.logout();
-        System.out.println(loggedOut? "Logout Successful" : "Logout Failed!");
+        System.out.println(loggedOut ? "Logout Successful" : "Logout Failed!");
     }
 
     @After
