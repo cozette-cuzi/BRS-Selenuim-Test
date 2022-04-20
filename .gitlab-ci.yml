@@ -1,0 +1,9 @@
+test_calculate_class:
+    stage: test
+    image: gradle
+    script:
+        - "gradle test"
+    artifacts:
+            paths:
+                - build/reports/jacoco/test/html
+            expire_in: 1 week

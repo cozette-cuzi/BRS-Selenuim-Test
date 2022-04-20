@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    test {
+        java {
+            srcDir 'test/java'
+        }
+    }
+}
+
+test {
+    testLogging {
+        outputs.upToDateWhen {false}
+        showStandardStreams = true
+    }
+}
+
+
+
+dependencies {
+    testImplementation 'junit:junit:4.13'
+    testImplementation 'org.seleniumhq.selenium:selenium-java:2.52.0'
+    testImplementation 'org.seleniumhq.selenium:selenium-chrome-driver:2.23.0'
+    testImplementation 'io.github.bonigarcia:webdrivermanager:4.3.1'
+}
+
