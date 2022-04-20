@@ -22,15 +22,17 @@ public class BRSTest {
     @Test
     public void testBookRentalsSystem() {
         MainPage mainPage = new MainPage(this.driver);
-        mainPage.visitLgoinPage();
-        String username = mainPage.loginWithCredetials("cozette@gmail.com", "password");
-        System.out.println(username);
+        LoginService loginService = new LoginService(this.driver);
 
         if (mainPage.searchForBook("Aperiam iusto")) {
             System.out.println("Book Found");
         } else {
             System.out.println("Book Not Found!");
         }
+
+        mainPage.visitLgoinPage();
+        String username = loginService.loginWithCredetials("cozette@gmail.com", "password");
+        System.out.println(username);
     }
 
     @After
