@@ -11,12 +11,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class MainPage {
     private WebDriver driver;
     private WebDriverWait wait;
+
     private final String URL = "https://book-rentals-system.herokuapp.com/";
+    private final By bodyLocator = By.tagName("body");
     private final By loginLinkLocator = By.linkText("Login");
     private final By emailInputLocator = By.id("email");
     private final By passwordInputLocator = By.id("password");
     private final By loginButtonLocator = By.xpath("//button[normalize-space()=\"Login\"]");
     private final By navbarDropdownLocator = By.cssSelector("a#navbarDropdown");
+
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
@@ -49,4 +52,33 @@ public class MainPage {
         return "username is " + navbarDropdown.getText();
     }
 
+    public boolean searchForBook(String book) {
+        By searchFieldLocator = By.name("search");
+        this.sendKeys(searchFieldLocator, book);
+
+        By searchButtonLocator = By
+                .xpath("//form//button[@class='btn btn-outline-light text-white  btn-sm']");
+        this.click(searchButtonLocator);
+        return this.bodyText().contains(book);
+    }
+
+    // public boolean logout() {
+    //     this.click(navbarDropdownLocator);
+    //     By logoutLocator = By.xpath("//div//a[@href='https://book-rentals-system.herokuapp.com/logout'");
+    // }
+
+    public String bodyText() {
+        WebElement body = this.waitVisibilityAndReturnElement(bodyLocator);
+        return body.getText();
+    }
+
+    private void click(By locator) {
+        WebElement element = this.waitVisibilityAndReturnElement(locator);
+        element.click();
+    }
+
+    private void sendKeys(By locator, String input) {
+        WebElement element = this.waitVisibilityAndReturnElement(locator);
+        element.sendKeys(input);
+    }
 }

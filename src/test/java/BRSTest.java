@@ -25,6 +25,12 @@ public class BRSTest {
         mainPage.visitLgoinPage();
         String username = mainPage.loginWithCredetials("cozette@gmail.com", "password");
         System.out.println(username);
+
+        if (mainPage.searchForBook("Aperiam iusto")) {
+            System.out.println("Book Found");
+        } else {
+            System.out.println("Book Not Found!");
+        }
     }
 
     @After
