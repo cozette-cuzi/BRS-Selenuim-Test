@@ -4,18 +4,14 @@ import org.openqa.selenium.WebElement;
 
 public class LogoutService extends BaseService {
 
-    private final By navbarDropdownLocator = By.cssSelector("a#navbarDropdown");
-    private final By navbarLocator = By.id("navbarSupportedContent");
-
     public LogoutService(WebDriver driver) {
         super(driver);
     }
 
     public boolean logout() {
-        this.click(navbarDropdownLocator);
-        By logoutLocator = By.xpath("//a[@href='https://book-rentals-system.herokuapp.com/logout']");
-        this.click(logoutLocator);
-        WebElement navbar = this.waitVisibilityAndReturnElement(navbarLocator);
+        this.click(this.locators.navbarDropdownLocator);
+        this.click(this.locators.logoutLocator);
+        WebElement navbar = this.waitVisibilityAndReturnElement(this.locators.navbarLocator);
         return navbar.getText().contains("Login");
     }
 

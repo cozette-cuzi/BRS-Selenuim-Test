@@ -9,21 +9,15 @@ public class LoginService extends BaseService {
     }
 
     public void visitLgoinPage() {
-        By loginLinkLocator = By.linkText("Login");
-        this.click(loginLinkLocator);
+        this.click(this.locators.loginLinkLocator);
     }
 
     public String loginWithCredetials(String email, String password) {
-        By emailInputLocator = By.id("email");
-        By passwordInputLocator = By.id("password");
+        this.sendKeys(this.locators.emailInputLocator, email);
+        this.sendKeys(this.locators.passwordInputLocator, password);
+        this.click(this.locators.loginButtonLocator);
 
-        this.sendKeys(emailInputLocator, email);
-        this.sendKeys(passwordInputLocator, password);
-
-        By loginButtonLocator = By.xpath("//button[normalize-space()=\"Login\"]");
-        this.click(loginButtonLocator);
-
-        WebElement navbarDropdown = this.waitVisibilityAndReturnElement(navbarDropdownLocator);
+        WebElement navbarDropdown = this.waitVisibilityAndReturnElement(this.locators.navbarDropdownLocator);
         return "username is " + navbarDropdown.getText();
     }
 

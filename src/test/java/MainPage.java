@@ -1,8 +1,7 @@
 
 import org.openqa.selenium.*;
 
-
-public class MainPage extends BaseService{
+public class MainPage extends BaseService {
 
     private final String URL = "https://book-rentals-system.herokuapp.com/";
 
@@ -11,20 +10,15 @@ public class MainPage extends BaseService{
         this.driver.get(URL);
     }
 
-    public void visitLgoinPage() { 
-        By loginLinkLocator = By.linkText("Login");
-        this.click(loginLinkLocator);
+    public void visitLgoinPage() {
+        this.click(this.locators.loginLinkLocator);
     }
 
     public boolean searchForBook(String book) {
-        By searchFieldLocator = By.name("search");
-        this.sendKeys(searchFieldLocator, book);
+        this.sendKeys(this.locators.searchFieldLocator, book);
 
-        By searchButtonLocator = By
-                .xpath("//form//button[@class='btn btn-outline-light text-white  btn-sm']");
-        this.click(searchButtonLocator);
+        this.click(this.locators.searchButtonLocator);
         return this.bodyText().contains(book);
     }
 
-    
 }

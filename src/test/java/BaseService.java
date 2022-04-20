@@ -7,11 +7,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class BaseService {
     protected WebDriver driver;
     protected WebDriverWait wait;
-    private final By bodyLocator = By.tagName("body");
+    protected Locators locators;
+
 
     public BaseService(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 10);
+        this.locators = new Locators();
     }
     
 
@@ -22,7 +24,7 @@ public class BaseService {
 
     
     protected String bodyText() {
-        WebElement body = this.waitVisibilityAndReturnElement(bodyLocator);
+        WebElement body = this.waitVisibilityAndReturnElement(this.locators.bodyLocator);
         return body.getText();
     }
 
