@@ -2,8 +2,6 @@ import org.openqa.selenium.*;
 
 public class LoginService extends BaseService {
 
-    private final By navbarDropdownLocator = By.cssSelector("a#navbarDropdown");
-
     public LoginService(WebDriver driver) {
         super(driver);
     }

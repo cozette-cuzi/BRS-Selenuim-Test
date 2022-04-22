@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -12,7 +13,7 @@ public class BaseService {
 
     public BaseService(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, 10);
+        this.wait = new WebDriverWait(driver, 20);
         this.locators = new Locators();
     }
     
@@ -36,5 +37,10 @@ public class BaseService {
     protected void sendKeys(By locator, String input) {
         WebElement element = this.waitVisibilityAndReturnElement(locator);
         element.sendKeys(input);
+    }
+
+    protected void applyScroll() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
     }
 }

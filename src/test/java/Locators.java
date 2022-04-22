@@ -15,4 +15,12 @@ public class Locators {
     public By bodyLocator = By.tagName("body");
     public By librarianActionsLocator = By.linkText("Librarian Actions");
     public By addBookLocator = By.xpath("//a[@href='https://book-rentals-system.herokuapp.com/books/create']");
+    public By genresDropdownLocator = By.id("dropdownMenuButton1");
+    public By genreCheckBoxLocator = By.id("flexCheckDefault1");
+    public By bookSubmitButtonLocator = By.id("submit-button");
+
+    public By addGenreLocator = By.xpath("//a[@href='https://book-rentals-system.herokuapp.com/genres/create']");
+    public By submitButtonLocator = By.xpath("//*[text()='Submit']");
+    public By selectLocator = By.name("style");
+    public By primaryOptionLocator = By.xpath("//option[@value='primary']");
 }
