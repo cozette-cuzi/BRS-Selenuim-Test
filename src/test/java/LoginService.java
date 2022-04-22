@@ -1,8 +1,10 @@
+import java.io.IOException;
+
 import org.openqa.selenium.*;
 
 public class LoginService extends BaseService {
 
-    public LoginService(WebDriver driver) {
+    public LoginService(WebDriver driver) throws IOException {
         super(driver);
     }
 

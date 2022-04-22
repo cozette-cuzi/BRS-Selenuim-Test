@@ -1,27 +1,60 @@
+import java.io.IOException;
+import java.util.Properties;
+
 import org.openqa.selenium.By;
 
 public class Locators {
-    public final String URL = "https://book-rentals-system.herokuapp.com/";
-    public By loginLinkLocator = By.linkText("Login");
-    public By searchFieldLocator = By.name("search");
-    public By searchButtonLocator = By
-            .xpath("//form//button[@class='btn btn-outline-light text-white  btn-sm']");
-    public By navbarDropdownLocator = By.cssSelector("a#navbarDropdown");
-    public By navbarLocator = By.id("navbarSupportedContent");
-    public By logoutLocator = By.xpath("//a[@href='https://book-rentals-system.herokuapp.com/logout']");
-    public By emailInputLocator = By.id("email");
-    public By passwordInputLocator = By.id("password");
-    public By loginButtonLocator = By.xpath("//button[normalize-space()=\"Login\"]");
-    public By bodyLocator = By.tagName("body");
-    public By librarianActionsLocator = By.linkText("Librarian Actions");
+    public Properties properties;
+
+    public Locators() throws IOException {
+        ConfigFileReader reader = new ConfigFileReader();
+        properties = new Properties();
+        properties = reader.readConfigFile();
+        URL = properties.getProperty("BaseURL");
+        loginLinkLocator = By.linkText("Login");
+        searchFieldLocator = By.name("search");
+        searchButtonLocator = By
+                .xpath("//form//button[@class='btn btn-outline-light text-white  btn-sm']");
+        navbarDropdownLocator = By.cssSelector("a#navbarDropdown");
+        navbarLocator = By.id("navbarSupportedContent");
+        logoutLocator = By.xpath("//a[@href='" + properties.getProperty("LogoutURL") + "']");;
+        emailInputLocator = By.id("email");
+        passwordInputLocator = By.id("password");
+        loginButtonLocator = By.xpath("//button[normalize-space()=\"Login\"]");
+        bodyLocator = By.tagName("body");
+        librarianActionsLocator = By.linkText("Librarian Actions");
+        // Add new Book locators
+        addBookLocator = By.xpath("//a[@href='" + properties.getProperty("AddBookURL") + "']");
+        genresDropdownLocator = By.id("dropdownMenuButton1");
+        genreCheckBoxLocator = By.id("flexCheckDefault1");
+        bookSubmitButtonLocator = By.id("submit-button");
+        // Add new Genre locators
+        addGenreLocator = By.xpath("//a[@href='" + properties.getProperty("AddGenreURL") + "']");
+        genresubmitButtonLocator = By.xpath("//*[text()='Submit']");
+        selectLocator = By.name("style");
+        primaryOptionLocator = By.xpath("//option[@value='primary']");
+    }
+
+    public final String URL;
+    public By loginLinkLocator;
+    public By searchFieldLocator;
+    public By searchButtonLocator;
+    public By navbarDropdownLocator;
+    public By navbarLocator;
+    public By logoutLocator;
+    public By emailInputLocator;
+    public By passwordInputLocator;
+    public By loginButtonLocator;
+    public By bodyLocator;
+    public By librarianActionsLocator;
     // Add new Book locators
-    public By addBookLocator = By.xpath("//a[@href='https://book-rentals-system.herokuapp.com/books/create']");
-    public By genresDropdownLocator = By.id("dropdownMenuButton1");
-    public By genreCheckBoxLocator = By.id("flexCheckDefault1");
-    public By bookSubmitButtonLocator = By.id("submit-button");
+    public By addBookLocator;
+    public By genresDropdownLocator;
+    public By genreCheckBoxLocator;
+    public By bookSubmitButtonLocator;
     // Add new Genre locators
-    public By addGenreLocator = By.xpath("//a[@href='https://book-rentals-system.herokuapp.com/genres/create']");
-    public By genresubmitButtonLocator = By.xpath("//*[text()='Submit']");
-    public By selectLocator = By.name("style");
-    public By primaryOptionLocator = By.xpath("//option[@value='primary']");
+    public By addGenreLocator;
+    public By genresubmitButtonLocator;
+    public By selectLocator;
+    public By primaryOptionLocator;
 }

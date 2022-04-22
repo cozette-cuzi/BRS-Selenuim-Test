@@ -1,9 +1,11 @@
 
+import java.io.IOException;
+
 import org.openqa.selenium.*;
 
 public class MainPage extends BaseService {
 
-    public MainPage(WebDriver driver) {
+    public MainPage(WebDriver driver) throws IOException {
         super(driver);
         this.driver.get(this.locators.URL);
     }
@@ -17,6 +19,10 @@ public class MainPage extends BaseService {
 
         this.click(this.locators.searchButtonLocator);
         return this.bodyText().contains(book);
+    }
+
+    public String pageTitle() {
+        return this.driver.getTitle();
     }
 
 }

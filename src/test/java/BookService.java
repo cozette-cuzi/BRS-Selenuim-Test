@@ -1,9 +1,10 @@
+import java.io.IOException;
 import java.util.*;
 
 import org.openqa.selenium.WebDriver;
 
 public class BookService extends BaseService {
-    public BookService(WebDriver driver) {
+    public BookService(WebDriver driver) throws IOException {
         super(driver);
     }
 
@@ -12,6 +13,7 @@ public class BookService extends BaseService {
         this.click(this.locators.genresDropdownLocator);
         this.click(this.locators.genreCheckBoxLocator);
         this.applyScroll();
+        
         this.click(this.locators.bookSubmitButtonLocator);
         System.out.println(this.driver.getCurrentUrl());
         return this.driver.getCurrentUrl() == this.locators.URL;

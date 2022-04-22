@@ -1,3 +1,5 @@
+
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
@@ -9,12 +11,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
+
 public class BaseService {
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected Locators locators;
 
-    public BaseService(WebDriver driver) {
+    public BaseService(WebDriver driver) throws IOException {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 20);
         this.locators = new Locators();
@@ -32,6 +36,7 @@ public class BaseService {
 
     protected void click(By locator) {
         WebElement element = this.waitVisibilityAndReturnElement(locator);
+        this.wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
     }
 
@@ -41,7 +46,7 @@ public class BaseService {
     }
 
     protected void applyScroll() {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+        JavascriptExecutor js = (JavascriptExecutor) this.driver;
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
     }
 
@@ -54,4 +59,5 @@ public class BaseService {
             System.out.println(item.getKey() + " : " + item.getValue());
         }
     }
+
 }

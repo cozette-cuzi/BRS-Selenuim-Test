@@ -1,9 +1,11 @@
+import java.io.IOException;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class LogoutService extends BaseService {
 
-    public LogoutService(WebDriver driver) {
+    public LogoutService(WebDriver driver) throws IOException {
         super(driver);
     }
 

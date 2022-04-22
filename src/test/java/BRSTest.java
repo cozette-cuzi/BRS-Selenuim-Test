@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.*;
 
 import org.junit.*;
@@ -6,46 +7,53 @@ import org.openqa.selenium.chrome.*;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class BRSTest {
+public class BRSTest{
+
     private WebDriver driver;
+    private MainPage mainPage;
+    private LoginService loginService;
+    private LogoutService logoutService;
+    private GenreService genreService;
+    private BookService bookService;
+    private Properties props;
 
     @Before
-    public void setup() {
-        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+    public void setup() throws IOException {
+        ConfigFileReader reader = new ConfigFileReader();
+        this.props = reader.readConfigFile();
+        System.setProperty("webdriver.chrome.driver", props.getProperty("DriverPath"));
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
+        this.mainPage = new MainPage(this.driver);
+        this.loginService = new LoginService(this.driver);
+        this.logoutService = new LogoutService(this.driver);
+        this.genreService = new GenreService(this.driver);
+        this.bookService = new BookService(this.driver);
     }
 
     @Test
     public void testBookRentalsSystem() {
-        MainPage mainPage = new MainPage(this.driver);
-        LoginService loginService = new LoginService(this.driver);
-        LogoutService logoutService = new LogoutService(this.driver);
-        GenreService genreService = new GenreService(this.driver);
-        BookService bookService = new BookService(this.driver);
-
         mainPage.visitLgoinPage();
-        String username = loginService.loginWithCredetials("cozette@gmail.com", "password");
+        String username = loginService.loginWithCredetials(props.getProperty("email"), props.getProperty("password"));
         System.out.println(username);
+        System.out.println(mainPage.pageTitle());
 
-        boolean visited = genreService.visitAddGenrePage();
-
+        boolean visitedGenre = genreService.visitAddGenrePage();
         HashMap<String, String> genre = this.genreData();
-        genreService.addNewGenre(genre);
-        System.out.println("Add new Genre Opened is " + visited);
-
-        boolean visitedBook = genreService.visitAddBookPage();
-        System.out.println("Add new Book Opened is " + visitedBook);
-
-        HashMap<String, String> book = this.bookData();
-        bookService.addNewBook(book);
-
+        genreService.addNewGenre(this.genreData());
+        System.out.println("Add new Genre Opened is " + visitedGenre);
+        
         if (mainPage.bodyText().contains(genre.get("name"))) {
             System.out.println(genre.get("name") + " Genre Found.");
         } else {
             System.out.println(genre.get("name") + "Genre Not Found!");
         }
+
+        boolean visitedBook = genreService.visitAddBookPage();
+        System.out.println("Add new Book Opened is " + visitedBook);
+        HashMap<String, String> book = this.bookData();
+        bookService.addNewBook(book);
 
         if (mainPage.searchForBook(book.get("name"))) {
             System.out.println(book.get("name") + " Book Found.");

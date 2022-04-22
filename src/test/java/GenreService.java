@@ -1,10 +1,11 @@
+import java.io.IOException;
 import java.util.*;
 
 import org.openqa.selenium.WebDriver;
 
 public class GenreService extends BaseService {
 
-    public GenreService(WebDriver driver) {
+    public GenreService(WebDriver driver) throws IOException {
         super(driver);
     }
 
