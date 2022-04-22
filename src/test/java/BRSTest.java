@@ -1,10 +1,8 @@
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 import org.junit.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.*;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -13,16 +11,6 @@ public class BRSTest {
 
     @Before
     public void setup() {
-        // System.setProperty("webdriver.gecko.driver", "C://Program Files/Mozilla
-        // Firefox/firefox.exe");
-        // WebDriver driver = new FirefoxDriver();
-        // WebDriverManager.firefoxdriver().setup();
-
-        // driver.manage().window().maximize();
-        // driver.manage().deleteAllCookies();
-        // driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
-        // driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();

@@ -14,13 +14,14 @@ public class Locators {
     public By loginButtonLocator = By.xpath("//button[normalize-space()=\"Login\"]");
     public By bodyLocator = By.tagName("body");
     public By librarianActionsLocator = By.linkText("Librarian Actions");
+    // Add new Book locators
     public By addBookLocator = By.xpath("//a[@href='https://book-rentals-system.herokuapp.com/books/create']");
     public By genresDropdownLocator = By.id("dropdownMenuButton1");
     public By genreCheckBoxLocator = By.id("flexCheckDefault1");
     public By bookSubmitButtonLocator = By.id("submit-button");
-
+    // Add new Genre locators
     public By addGenreLocator = By.xpath("//a[@href='https://book-rentals-system.herokuapp.com/genres/create']");
-    public By submitButtonLocator = By.xpath("//*[text()='Submit']");
+    public By genresubmitButtonLocator = By.xpath("//*[text()='Submit']");
     public By selectLocator = By.name("style");
     public By primaryOptionLocator = By.xpath("//option[@value='primary']");
 }

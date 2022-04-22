@@ -1,6 +1,5 @@
 import java.util.*;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class GenreService extends BaseService {
@@ -22,16 +21,10 @@ public class GenreService extends BaseService {
     }
 
     public void addNewGenre(HashMap<String, String> data) {
-        Iterator i = data.entrySet().iterator();
-        while (i.hasNext()) {
-            HashMap.Entry<String, String> item = (HashMap.Entry<String, String>) i.next();
-            By inputLocator = By.name(item.getKey());
-            this.sendKeys(inputLocator, item.getValue());
-            System.out.println(item.getKey() + " : " + item.getValue());
-        }
+        this.fillFormInput(data);
         this.click(this.locators.selectLocator);
         this.click(this.locators.primaryOptionLocator);
-        this.click(this.locators.submitButtonLocator);
+        this.click(this.locators.genresubmitButtonLocator);
     }
 
 }
