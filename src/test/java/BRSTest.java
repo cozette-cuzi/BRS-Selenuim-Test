@@ -7,11 +7,6 @@ import org.openqa.selenium.chrome.*;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.codearte.jfairy.Fairy;
-import io.codearte.jfairy.data.MapBasedDataMaster.Data;
-import io.codearte.jfairy.producer.person.Address;
-
-import io.codearte.jfairy.producer.person.Person;
-import io.codearte.jfairy.producer.text.TextProducer;
 
 public class BRSTest {
 
