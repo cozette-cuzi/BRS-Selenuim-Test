@@ -1,4 +1,4 @@
-# BRS Selenuim Test
+# Selenuim Testing
 
 Software Quality and testing Selenuim assignment.
 Testing the website https://book-rentals-system.herokuapp.com/ which is a system to rent books.
