@@ -33,9 +33,16 @@ public class Locators {
         genresubmitButtonLocator = By.xpath("//*[text()='Submit']");
         selectLocator = By.name("style");
         primaryOptionLocator = By.xpath("//option[@value='primary']");
+
+        // Typing
+        typingBaseURL = properties.getProperty("TypingBaseURL");
+        displayLocator = By.xpath("//div[@id='display']");
+        wpmLocator = By.id("big-wpm");
+
     }
 
     public final String URL;
+    public final String typingBaseURL;
     public By loginLinkLocator;
     public By searchFieldLocator;
     public By searchButtonLocator;
@@ -57,4 +64,8 @@ public class Locators {
     public By genresubmitButtonLocator;
     public By selectLocator;
     public By primaryOptionLocator;
+
+    // Typing locators
+    public By displayLocator;
+    public By wpmLocator;
 }
