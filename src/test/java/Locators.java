@@ -1,5 +1,7 @@
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
+import java.util.Random;
 
 import org.openqa.selenium.By;
 
@@ -17,7 +19,7 @@ public class Locators {
                 .xpath("//form//button[@class='btn btn-outline-light text-white  btn-sm']");
         navbarDropdownLocator = By.cssSelector("a#navbarDropdown");
         navbarLocator = By.id("navbarSupportedContent");
-        logoutLocator = By.xpath("//a[@href='" + properties.getProperty("LogoutURL") + "']");;
+        logoutLocator = By.xpath("//a[@href='" + properties.getProperty("LogoutURL") + "']");
         emailInputLocator = By.id("email");
         passwordInputLocator = By.id("password");
         loginButtonLocator = By.xpath("//button[normalize-space()=\"Login\"]");
@@ -32,7 +34,11 @@ public class Locators {
         addGenreLocator = By.xpath("//a[@href='" + properties.getProperty("AddGenreURL") + "']");
         genresubmitButtonLocator = By.xpath("//*[text()='Submit']");
         selectLocator = By.name("style");
-        primaryOptionLocator = By.xpath("//option[@value='primary']");
+        
+        String[] options = { "primary", "secondary", "success", "warning", "dark", "light" };
+        Random r = new Random();
+        int index = r.nextInt(options.length);
+        optionLocator = By.xpath("//option[@value='" + options[index] + "']");
 
         // Typing
         typingBaseURL = properties.getProperty("TypingBaseURL");
@@ -63,7 +69,7 @@ public class Locators {
     public By addGenreLocator;
     public By genresubmitButtonLocator;
     public By selectLocator;
-    public By primaryOptionLocator;
+    public By optionLocator;
 
     // Typing locators
     public By displayLocator;

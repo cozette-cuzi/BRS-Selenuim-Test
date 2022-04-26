@@ -15,7 +15,6 @@ public class BookService extends BaseService {
         this.applyScroll();
         
         this.click(this.locators.bookSubmitButtonLocator);
-        System.out.println(this.driver.getCurrentUrl());
         return this.driver.getCurrentUrl() == this.locators.URL;
     }
 

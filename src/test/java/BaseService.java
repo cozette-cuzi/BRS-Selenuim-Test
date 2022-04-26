@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -21,6 +22,7 @@ public class BaseService {
     public BaseService(WebDriver driver) throws IOException {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 20);
+        this.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         this.locators = new Locators();
     }
 
@@ -56,7 +58,6 @@ public class BaseService {
             HashMap.Entry<String, String> item = (HashMap.Entry<String, String>) i.next();
             By inputLocator = By.name(item.getKey());
             this.sendKeys(inputLocator, item.getValue());
-            System.out.println(item.getKey() + " : " + item.getValue());
         }
     }
 

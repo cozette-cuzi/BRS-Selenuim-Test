@@ -7,25 +7,22 @@ import org.openqa.selenium.chrome.*;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.codearte.jfairy.Fairy;
+import io.codearte.jfairy.data.MapBasedDataMaster.Data;
 import io.codearte.jfairy.producer.person.Address;
 
 import io.codearte.jfairy.producer.person.Person;
-
-
-
-
+import io.codearte.jfairy.producer.text.TextProducer;
 
 public class BRSTest {
 
     private WebDriver driver;
-    private MainPage mainPage;
+    private BRSMainPage mainPage;
     private LoginService loginService;
     private LogoutService logoutService;
     private GenreService genreService;
     private BookService bookService;
     private Properties props;
     private Fairy fairy;
-	private Person person;
 
     @Before
     public void setup() throws IOException {
@@ -35,64 +32,62 @@ public class BRSTest {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        this.mainPage = new MainPage(this.driver);
+        this.mainPage = new BRSMainPage(this.driver);
         this.loginService = new LoginService(this.driver);
         this.logoutService = new LogoutService(this.driver);
         this.genreService = new GenreService(this.driver);
         this.bookService = new BookService(this.driver);
         this.fairy = Fairy.create();
-        this.person = fairy.person();
     }
 
-    // @Test
-    // public void testBookRentalsSystem() {
-    //     mainPage.visitLgoinPage();
-    //     String username = loginService.loginWithCredetials(props.getProperty("email"), props.getProperty("password"));
-    //     System.out.println(username);
-    //     System.out.println("Page Title: " + mainPage.pageTitle());
+    @Test
+    public void testBookRentalsSystem() {
+        mainPage.visitLgoinPage();
+        String username = loginService.loginWithCredetials(props.getProperty("email"), props.getProperty("password"));
+        System.out.println(username);
+        System.out.println("Page Title: " + mainPage.pageTitle());
 
-    //     boolean visitedGenre = genreService.visitAddGenrePage();
-    //     HashMap<String, String> genre = this.genreData();
-    //     genreService.addNewGenre(this.genreData());
-    //     System.out.println("Add new Genre Opened is " + visitedGenre);
+        genreService.visitAddGenrePage();
+        HashMap<String, String> genre = this.genreData();
+        genreService.addNewGenre(this.genreData());
 
-    //     if (mainPage.bodyText().contains(genre.get("name"))) {
-    //         System.out.println(genre.get("name") + " Genre Found.");
-    //     } else {
-    //         System.out.println(genre.get("name") + "Genre Not Found!");
-    //     }
+        if (mainPage.bodyText().contains(genre.get("name"))) {
+            System.out.println(genre.get("name") + " Genre Found.");
+        } else {
+            System.out.println(genre.get("name") + "Genre Not Found!");
+        }
 
-    //     boolean visitedBook = genreService.visitAddBookPage();
-    //     System.out.println("Add new Book Opened is " + visitedBook);
-    //     HashMap<String, String> book = this.bookData();
-    //     bookService.addNewBook(book);
+        genreService.visitAddBookPage();
+        HashMap<String, String> book = this.bookData();
+        bookService.addNewBook(book);
 
-    //     if (mainPage.searchForBook(book.get("name"))) {
-    //         System.out.println(book.get("name") + " Book Found.");
-    //     } else {
-    //         System.out.println(book.get("name") + "Book Not Found!");
-    //     }
+        if (mainPage.searchForBook(book.get("name"))) {
+            System.out.println(book.get("name") + " Book Found.");
+        } else {
+            System.out.println(book.get("name") + "Book Not Found!");
+        }
 
-    //     boolean loggedOut = logoutService.logout();
-    //     System.out.println(loggedOut ? "Logout Successful." : "Logout Failed!");
-    // }
+        boolean loggedOut = logoutService.logout();
+        System.out.println(loggedOut ? "Logout Successful." : "Logout Failed!");
+    }
 
     private HashMap<String, String> bookData() {
+        Random r = new Random();
         HashMap<String, String> data = new HashMap<String, String>();
-        data.put("name", "The Art of Software Testing");
+        data.put("name", fairy.textProducer().word(3));
         data.put("released_at", "09022010");
-        data.put("authors", "Corey Sandler, Tom Badgett");
-        data.put("pages", "256");
+        data.put("authors", fairy.person().getFullName());
+        data.put("pages", String.valueOf((int) Math.floor(r.nextInt(500 - 100) + 100)));
         data.put("in_stock", "10");
-        data.put("description",
-                "The hardware and software of computing have changed markedly in the three decades since the first edition of The Art of Software Testing, but this book's powerful underlying analysis has stood the test of time. ");
-        data.put("isbn", "978316148" + String.valueOf((int) Math.floor(Math.random() * (9999 - 1000 + 1) + 1000)));
+        data.put("description", fairy.textProducer().paragraph(4));
+        data.put("isbn", "97831614" + String.valueOf((int) Math.floor(r.nextInt(99999 - 10000) + 10000)));
+
         return data;
     }
 
     private HashMap<String, String> genreData() {
         HashMap<String, String> data = new HashMap<String, String>();
-        data.put("name", "Art");
+        data.put("name", fairy.textProducer().word(2));
         return data;
     }
 

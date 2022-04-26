@@ -3,9 +3,9 @@ import java.io.IOException;
 
 import org.openqa.selenium.*;
 
-public class MainPage extends BaseService {
+public class BRSMainPage extends BaseService {
 
-    public MainPage(WebDriver driver) throws IOException {
+    public BRSMainPage(WebDriver driver) throws IOException {
         super(driver);
         this.driver.get(this.locators.URL);
     }

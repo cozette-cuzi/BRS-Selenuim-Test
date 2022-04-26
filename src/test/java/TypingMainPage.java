@@ -13,7 +13,6 @@ public class TypingMainPage extends BaseService {
         super(driver);
         this.driver.get(this.locators.typingBaseURL);
         this.addCookieConsent();
-        // this.driver.get(this.locators.typingBaseURL);
     }
 
     public void type() {
@@ -33,7 +32,7 @@ public class TypingMainPage extends BaseService {
             DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             Date date = format.parse("01/01/2024");
             Cookie ck = new Cookie("cookieconsent_status", "dismiss", "typing-speedtest.com", "/", date, false);
-            System.out.println("Cookie " + ck.getExpiry());
+            System.out.println("Cookie Expires at: " + ck.getExpiry());
             this.driver.manage().addCookie(ck);
             this.driver.navigate().refresh();
         } catch (Exception ex) {

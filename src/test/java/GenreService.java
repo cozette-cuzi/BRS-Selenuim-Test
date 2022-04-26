@@ -24,7 +24,7 @@ public class GenreService extends BaseService {
     public void addNewGenre(HashMap<String, String> data) {
         this.fillFormInput(data);
         this.click(this.locators.selectLocator);
-        this.click(this.locators.primaryOptionLocator);
+        this.click(this.locators.optionLocator);
         this.click(this.locators.genresubmitButtonLocator);
     }
 
