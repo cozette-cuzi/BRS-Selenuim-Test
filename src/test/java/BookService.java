@@ -12,8 +12,9 @@ public class BookService extends BaseService {
         this.fillFormInput(data);
         this.click(this.locators.genresDropdownLocator);
         this.click(this.locators.genreCheckBoxLocator);
+        this.click(this.locators.genresDropdownLocator);
         this.applyScroll();
-        
+
         this.click(this.locators.bookSubmitButtonLocator);
         return this.driver.getCurrentUrl() == this.locators.URL;
     }

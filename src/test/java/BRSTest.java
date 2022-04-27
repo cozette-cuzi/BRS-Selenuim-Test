@@ -23,10 +23,9 @@ public class BRSTest {
     public void setup() throws IOException {
         ConfigFileReader reader = new ConfigFileReader();
         this.props = reader.readConfigFile();
-        System.setProperty("webdriver.chrome.driver", props.getProperty("DriverPath"));
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        driver.manage().window().maximize();
+
         this.mainPage = new BRSMainPage(this.driver);
         this.loginService = new LoginService(this.driver);
         this.logoutService = new LogoutService(this.driver);

@@ -1,5 +1,6 @@
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
@@ -12,8 +13,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
-
 public class BaseService {
     protected WebDriver driver;
     protected WebDriverWait wait;
@@ -21,8 +20,9 @@ public class BaseService {
 
     public BaseService(WebDriver driver) throws IOException {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, 20);
-        this.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        this.driver.manage().window().maximize();
         this.locators = new Locators();
     }
 
@@ -49,7 +49,8 @@ public class BaseService {
 
     protected void applyScroll() {
         JavascriptExecutor js = (JavascriptExecutor) this.driver;
-        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight); console.log('scrolled');");
+
     }
 
     protected void fillFormInput(HashMap<String, String> data) {
