@@ -8,5 +8,6 @@ And the website [Typing Speed](https://typing-speedtest.com/words) which is a we
 
 #### To start the project run
 ```gradle build``` 
+
 ```gradle test``` 
 
